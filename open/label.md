@@ -20,4 +20,9 @@ We would
 2. Append `python{python_version}` to `task["name"]` when yielding a python-specific task
 3. Use the job transform, or later similar transform, to set the label to `{kind}-{task["name"]}`
 
+Note: Some transforms look at `task["label"]`, e.g. `taskgraph.transforms.cached_tasks`. This would imply that either
+
+- we should stop using label in these transforms, or
+- we should use the label transform before using the `cached_tasks` transform.
+
 There are exceptions to this rule currently, e.g. `build-docker-image-*` from the `docker-image` kind. We should deprecate these and standardize at some point.
